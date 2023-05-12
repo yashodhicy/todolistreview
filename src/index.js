@@ -70,7 +70,6 @@ const loadTodos = () => {
         // eslint-disable-next-line no-restricted-globals
         location.reload();
       });
-      
 
       // add event listener to the action div
       actionDiv.addEventListener('click', (event) => {
