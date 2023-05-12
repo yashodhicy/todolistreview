@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
 import './style.css';
 
-const addTodoItem = require('./module/add.js');
+const addtodo = require('./module/add.js');
 
-const removeTodoItem = require('./module/remove.js');
+const removetodo = require('./module/remove.js');
 
 const updateTodoStatus = require('./module/update.js');
 
@@ -66,10 +66,11 @@ const loadTodos = () => {
       checkbox.addEventListener('change', () => {
         const isChecked = checkbox.checked;
         const itemId = checkbox.id;
-        updateTodoStatus(todosData, itemId, isChecked);
+        updateTodoStatus({ todosData, id: itemId, isChecked });
         // eslint-disable-next-line no-restricted-globals
         location.reload();
       });
+      
 
       // add event listener to the action div
       actionDiv.addEventListener('click', (event) => {
@@ -125,7 +126,7 @@ newTaskInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     const newTask = newTaskInput.value.trim();
     if (newTask !== '') {
-      addTodoItem(todosData, newTask, loadTodos);
+      addtodo(todosData, newTask, loadTodos);
       newTaskInput.value = '';
       // eslint-disable-next-line no-restricted-globals
       location.reload();
@@ -138,7 +139,7 @@ todoListContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('delete')) {
     const itemId = event.target.dataset.id;
     const itemIndex = todosData.findIndex((item) => item.id === itemId);
-    removeTodoItem(todosData, itemIndex);
+    removetodo(todosData, itemIndex);
     // eslint-disable-next-line no-restricted-globals
     location.reload();
   }
